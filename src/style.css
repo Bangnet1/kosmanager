@@ -21,3 +21,5 @@
 .room-tenant-edit{color:#a9e8d8;border-color:#65d9b44a}.room-actions{gap:7px;flex-wrap:wrap}.room-actions .tiny-action{min-height:29px}
 
 .expiry-reminder{cursor:pointer;border:1px solid #dca36a80;background:#dca36a26;color:#ffd2a0;font:800 9px 'DM Sans';letter-spacing:.3px}.expiry-reminder:hover{background:#dca36a42;transform:translateY(-1px)}
+
+.room-rental-actions{display:flex;gap:8px;width:100%;margin-top:4px}.room-rental-actions .checkout-button,.room-rental-actions .extend-button{flex:1;min-width:0;min-height:44px;margin-top:0;padding:10px 8px;font-size:11px}.extend-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #65d9b477;border-radius:10px;background:#168b7830;color:#a9e8d8;font-weight:800;cursor:pointer}.extend-button:hover{background:#168b7850}.room-notification-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:2px}.room-notification-row .payment-status{margin-top:0}.maintenance-reminder{background:#d8a54b24;border:1px solid #d8a54b70;color:#f2d08d;white-space:nowrap}
