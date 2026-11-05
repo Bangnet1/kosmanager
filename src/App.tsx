@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import { Building2, LayoutDashboard, DoorOpen, Users, Wallet, Wrench, FileText, Settings, LogOut, Plus, MapPin, BedDouble, ShieldCheck, TrendingUp, CircleAlert, Trash2, Pencil, RefreshCw, Receipt, BarChart3, UserRound, MessageCircle } from 'lucide-react'
 import { supabase, isSupabaseConfigured } from './lib/supabase'
@@ -72,6 +72,7 @@ function RoomsView({rooms,properties,occupancies,tenants,invoices,agreements,mai
 function FinanceChart({transactions,payments}:{transactions:Row[];payments:Row[]}){
  const [period,setPeriod]=useState<'7d'|'30d'|'12m'>('30d');
  const [selectedIndex,setSelectedIndex]=useState<number|null>(null);
+ const chartScrollRef=useRef<HTMLDivElement|null>(null);
  const count=period==='7d'?7:period==='30d'?30:12;
  const now=new Date();
  const buckets=Array.from({length:count},(_,i)=>{
@@ -107,10 +108,11 @@ function FinanceChart({transactions,payments}:{transactions:Row[];payments:Row[]
  const selected=selectedIndex===null?null:buckets[selectedIndex];
  const totalIn=buckets.reduce((n,b)=>n+b.income,0),totalOut=buckets.reduce((n,b)=>n+b.expense,0);
  const dayH=count-1;
+ useEffect(()=>{const el=chartScrollRef.current;if(el)el.scrollLeft=el.scrollWidth},[period,transactions,payments]);
  return <section className="glass panel finance-chart">
   <div className="panel-head chart-heading"><div><h3>Grafik pemasukan & pengeluaran</h3><p>Tren transaksi keuangan berdasarkan tanggal.</p></div><div className="chart-period">{([{id:'7d',label:'7 hari'},{id:'30d',label:'30 hari'},{id:'12m',label:'12 bulan'}] as const).map(p=><button key={p.id} className={period===p.id?'active':''} onClick={()=>{setPeriod(p.id);setSelectedIndex(null)}}>{p.label}</button>)}</div></div>
   <div className="chart-legend"><span><i className="legend-income"/>Pemasukan</span><span><i className="legend-expense"/>Pengeluaran</span></div>
-  <div className="finance-chart-scroll"><svg className="finance-chart-svg finance-line-svg" viewBox="0 0 780 258" role="group" aria-label="Grafik garis interaktif pemasukan dan pengeluaran">
+  <div className="finance-chart-scroll" ref={chartScrollRef}><svg className="finance-chart-svg finance-line-svg" viewBox="0 0 780 258" role="group" aria-label="Grafik garis interaktif pemasukan dan pengeluaran">
    {[0,1,2,3].map(n=>{const y=bottom-(plotH*n/3);return <g key={n}><line x1="48" y1={y} x2="756" y2={y} stroke="currentColor" opacity=".12" strokeDasharray="4 5"/><text x="40" y={y+4} textAnchor="end" fill="currentColor" opacity=".55" fontSize="10">{fmt(max*n/3)}</text></g>})}
    <line x1={coords[dayH].x} y1={top-5} x2={coords[dayH].x} y2={bottom+5} stroke="#35C6A4" opacity=".5" strokeDasharray="3 5"/>
    <path d={smoothPath('yi')} fill="none" stroke="#35C6A4" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
