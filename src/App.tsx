@@ -71,14 +71,14 @@ function RoomsView({rooms,properties,occupancies,tenants,invoices,agreements,mai
 
 function FinanceChart({transactions}:{transactions:Row[]}){
  const [period,setPeriod]=useState<'7d'|'30d'|'12m'>('30d');
- const [hover,setHover]=useState<number|null>(null);
- const now=new Date();
+ const [selectedIndex,setSelectedIndex]=useState<number|null>(null);
  const count=period==='7d'?7:period==='30d'?30:12;
+ const now=new Date();
  const buckets=Array.from({length:count},(_,i)=>{
   const d=new Date(now);
   if(period==='12m'){d.setDate(1);d.setMonth(d.getMonth()-(count-1-i));}
   else d.setDate(d.getDate()-(count-1-i));
-  return {key:period==='12m'?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'):d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),label:period==='12m'?d.toLocaleDateString('id-ID',{month:'short'}):d.toLocaleDateString('id-ID',{day:'numeric',month:'short'}),income:0,expense:0};
+  return {key:period==='12m'?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'):d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),label:period==='12m'?d.toLocaleDateString('id-ID',{month:'short',year:'2-digit'}):d.toLocaleDateString('id-ID',{day:'numeric',month:'short'}),income:0,expense:0};
  });
  transactions.filter(t=>t.status==='posted').forEach(t=>{
   if(!t.transaction_date)return;
@@ -88,18 +88,33 @@ function FinanceChart({transactions}:{transactions:Row[]}){
   if(bucket){if(t.transaction_type==='income')bucket.income+=Number(t.amount||0);if(t.transaction_type==='expense')bucket.expense+=Number(t.amount||0)}
  });
  const max=Math.max(1,...buckets.flatMap(b=>[b.income,b.expense]));
- const chartHeight=190,baseY=215,topY=20,plotH=baseY-topY;
+ const left=54,right=748,top=22,bottom=208,plotH=bottom-top,slot=(right-left)/(count-1||1);
+ const coords=buckets.map((b,i)=>({x:left+i*slot,yi:bottom-(b.income/max)*plotH,ye:bottom-(b.expense/max)*plotH}));
+ const smoothPath=(key:'yi'|'ye')=>coords.map((p,i)=>i===0?'M '+p.x+' '+p[key]:'Q '+coords[i-1].x+' '+coords[i-1][key]+' '+((coords[i-1].x+p.x)/2)+' '+((coords[i-1][key]+p[key])/2)+' T '+p.x+' '+p[key]).join(' ');
  const fmt=(n:number)=>new Intl.NumberFormat('id-ID',{notation:n>=1000000?'compact':'standard',maximumFractionDigits:1}).format(n);
- const selected=hover===null?null:buckets[hover];
+ const selected=selectedIndex===null?null:buckets[selectedIndex];
+ const totalIn=buckets.reduce((n,b)=>n+b.income,0),totalOut=buckets.reduce((n,b)=>n+b.expense,0);
+ const dayH=count-1;
  return <section className="glass panel finance-chart">
-  <div className="panel-head chart-heading"><div><h3>Grafik pemasukan & pengeluaran</h3><p>Pergerakan transaksi keuangan berdasarkan tanggal.</p></div><div className="chart-period">{([{id:'7d',label:'7 hari'},{id:'30d',label:'30 hari'},{id:'12m',label:'12 bulan'}] as const).map(p=><button key={p.id} className={period===p.id?'active':''} onClick={()=>{setPeriod(p.id);setHover(null)}}>{p.label}</button>)}</div></div>
+  <div className="panel-head chart-heading"><div><h3>Grafik pemasukan & pengeluaran</h3><p>Tren transaksi keuangan berdasarkan tanggal.</p></div><div className="chart-period">{([{id:'7d',label:'7 hari'},{id:'30d',label:'30 hari'},{id:'12m',label:'12 bulan'}] as const).map(p=><button key={p.id} className={period===p.id?'active':''} onClick={()=>{setPeriod(p.id);setSelectedIndex(null)}}>{p.label}</button>)}</div></div>
   <div className="chart-legend"><span><i className="legend-income"/>Pemasukan</span><span><i className="legend-expense"/>Pengeluaran</span></div>
-  <div className="finance-chart-scroll"><svg className="finance-chart-svg" viewBox="0 0 760 260" role="img" aria-label="Grafik batang pemasukan dan pengeluaran">
-   {[0,1,2,3].map(n=>{const y=baseY-(plotH*n/3);return <g key={n}><line x1="48" y1={y} x2="748" y2={y} stroke="currentColor" opacity=".12" strokeDasharray="4 5"/><text x="40" y={y+4} textAnchor="end" fill="currentColor" opacity=".55" fontSize="10">{fmt(max*n/3)}</text></g>})}
-   {buckets.map((b,i)=>{const slot=700/count;const groupX=50+i*slot+slot/2;const w=Math.min(period==='12m'?15:period==='30d'?6:16,slot*.28);const h1=b.income/max*plotH,h2=b.expense/max*plotH;return <g key={b.key} onMouseEnter={()=>setHover(i)} onMouseLeave={()=>setHover(null)} onClick={()=>setHover(hover===i?null:i)} style={{cursor:'pointer'}}><rect x={groupX-slot*.42} y={topY} width={slot*.84} height={plotH+8} fill="transparent"/><rect x={groupX-w-1} y={baseY-h1} width={w} height={Math.max(1,h1)} rx="3" fill="#29b99b" opacity={hover===i?1:.82}/><rect x={groupX+1} y={baseY-h2} width={w} height={Math.max(1,h2)} rx="3" fill="#e5a45f" opacity={hover===i?1:.82}/>{(period!=='30d'||i%5===0)&&<text x={groupX} y="242" textAnchor="middle" fill="currentColor" opacity=".65" fontSize="10">{b.label}</text>}</g>})}
+  <div className="finance-chart-scroll"><svg className="finance-chart-svg finance-line-svg" viewBox="0 0 780 258" role="group" aria-label="Grafik garis interaktif pemasukan dan pengeluaran">
+   {[0,1,2,3].map(n=>{const y=bottom-(plotH*n/3);return <g key={n}><line x1="48" y1={y} x2="756" y2={y} stroke="currentColor" opacity=".12" strokeDasharray="4 5"/><text x="40" y={y+4} textAnchor="end" fill="currentColor" opacity=".55" fontSize="10">{fmt(max*n/3)}</text></g>})}
+   <line x1={coords[dayH].x} y1={top-5} x2={coords[dayH].x} y2={bottom+5} stroke="#35C6A4" opacity=".5" strokeDasharray="3 5"/>
+   <path d={smoothPath('yi')} fill="none" stroke="#35C6A4" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+   <path d={smoothPath('ye')} fill="none" stroke="#E7A45F" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+   {coords.map((p,i)=><g key={buckets[i].key} className="line-chart-point" onClick={()=>setSelectedIndex(selectedIndex===i?null:i)} role="button" tabIndex={0} aria-label={buckets[i].label+', pemasukan '+money(buckets[i].income)+', pengeluaran '+money(buckets[i].expense)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')setSelectedIndex(selectedIndex===i?null:i)}}>
+    <circle cx={p.x} cy={p.yi} r="11" fill="transparent"/><circle cx={p.x} cy={p.ye} r="11" fill="transparent"/>
+    {i===dayH&&<><circle className="day-h-pulse" cx={p.x} cy={p.yi} r="10"/><circle className="day-h-pulse delay" cx={p.x} cy={p.ye} r="10"/></>}
+    <circle cx={p.x} cy={p.yi} r={selectedIndex===i?5:3.5} fill="#35C6A4" stroke="#163d34" strokeWidth="1.5"/>
+    <circle cx={p.x} cy={p.ye} r={selectedIndex===i?5:3.5} fill="#E7A45F" stroke="#4b3520" strokeWidth="1.5"/>
+    {selectedIndex===i&&<g><line x1={p.x} y1={top} x2={p.x} y2={bottom} stroke="currentColor" opacity=".25" strokeDasharray="3 3"/><rect x={Math.min(610,Math.max(52,p.x-72))} y="5" width="144" height="38" rx="7" fill="#172622" stroke="#ffffff40"/><text x={Math.min(682,Math.max(124,p.x))} y="20" textAnchor="middle" fill="#fff" fontSize="10">{buckets[i].label}</text><text x={Math.min(682,Math.max(124,p.x))} y="33" textAnchor="middle" fill="#9fe5d0" fontSize="9">Masuk {fmt(buckets[i].income)} · Keluar {fmt(buckets[i].expense)}</text></g>}
+   </g>)}
+   {buckets.map((b,i)=>(period!=='30d'||i%5===0||i===dayH)&&<text key={b.key} x={coords[i].x} y="239" textAnchor="middle" fill={i===dayH?'#35C6A4':'currentColor'} fontWeight={i===dayH?'bold':'normal'} opacity=".75" fontSize="10">{i===dayH?'HARI H':b.label}</text>)}
   </svg></div>
-  <div className="chart-summary">{selected?<><b>{selected.label}</b><span className="income-text">Masuk: {money(selected.income)}</span><span className="expense-text">Keluar: {money(selected.expense)}</span></>:<><span>Pilih batang grafik untuk melihat rincian tanggal.</span><b>{money(buckets.reduce((n,b)=>n+b.income,0)-buckets.reduce((n,b)=>n+b.expense,0))} <small>selisih periode</small></b></>}</div>
+  <div className="chart-summary">{selected?<><b>{selected.label}</b><span className="income-text">Masuk: {money(selected.income)}</span><span className="expense-text">Keluar: {money(selected.expense)}</span></>:<><span>Pilih titik grafik untuk melihat rincian.</span><b>{money(totalIn-totalOut)} <small>selisih periode</small></b></>}</div>
   {transactions.filter(t=>t.status==='posted').length===0&&<p className="muted chart-empty">Belum ada transaksi posted pada periode ini.</p>}
+  <p className="chart-day-h-note">Titik hari H menandai tanggal hari ini dan berdenyut saat grafik aktif.</p>
  </section>
 }
 function RoomsReport({rooms,properties,occupancies,tenants,invoices}:{rooms:Row[];properties:Row[];occupancies:Row[];tenants:Row[];invoices:Row[]}){const activeByRoom=new Map(occupancies.filter(o=>!o.check_out).map(o=>[o.room_id,o]));const occupied=rooms.filter(r=>r.status==='occupied'||activeByRoom.has(r.id));const available=rooms.filter(r=>r.status==='available'&&!activeByRoom.has(r.id));const potential=occupied.reduce((sum,r)=>sum+Number(r.monthly_price||0),0);return <section className="glass panel room-report"><div className="panel-head"><div><h3>Ringkasan data kamar & penyewa</h3><p>Terhubung otomatis dengan data pada dashboard Kamar.</p></div><span className="pill">Data otomatis</span></div><div className="stats room-report-stats"><Stat title="Total kamar" value={rooms.length} note="Semua properti" icon={<BedDouble/>}/><Stat title="Kamar terisi" value={occupied.length} note="Memiliki penghuni aktif" icon={<Users/>}/><Stat title="Kamar kosong" value={available.length} note="Siap disewakan" icon={<DoorOpen/>}/><Stat title="Potensi sewa bulanan" value={money(potential)} note="Harga kamar yang sedang terisi" icon={<TrendingUp/>}/></div><div className="table-wrap"><table><thead><tr><th>Properti / Kamar</th><th>Status</th><th>Nama penyewa</th><th>Mulai sewa</th><th>Harga sewa / bulan</th><th>Sisa tagihan</th></tr></thead><tbody>{rooms.map(room=>{const occ=activeByRoom.get(room.id);const tenant=tenants.find(t=>t.id===occ?.tenant_id);const prop=properties.find(p=>p.id===room.property_id);const latest=invoices.filter(i=>i.room_id===room.id&&i.status!=='cancelled').sort((x,y)=>String(y.issue_date).localeCompare(String(x.issue_date)))[0];const remaining=latest?Math.max(0,Number(latest.total_amount||0)-Number(latest.paid_amount||0)):0;const full=Boolean(occ)||room.status==='occupied';return <tr key={room.id}><td><b>{prop?.property_name||'—'}</b><small className="report-subline">{room.room_name}</small></td><td><span className={'room-status '+(full?'status-busy':'status-free')}>{full?'TERISI':room.status==='maintenance'?'MAINTENANCE':'KOSONG'}</span></td><td>{tenant?.full_name||'—'}</td><td>{occ?.check_in?dateText(occ.check_in):'—'}</td><td>{money(room.monthly_price)}</td><td>{latest?money(remaining):'Belum ada tagihan'}</td></tr>})}{rooms.length===0&&<tr><td colSpan={6}>Belum ada data kamar. Tambahkan kamar melalui dashboard Kamar.</td></tr>}</tbody></table></div></section>}
