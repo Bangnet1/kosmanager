@@ -17,3 +17,5 @@
 .room-card-top{align-items:flex-start;gap:10px}.room-title-wrap{display:flex;flex-direction:column;gap:7px;min-width:0;flex:1}.room-title-line{display:flex;align-items:center;gap:9px;min-width:0;color:#9de6d3}.room-title-line .room-name{font:800 16px Manrope;color:#f4f6f3;overflow-wrap:anywhere}.room-tenant-line{display:flex;align-items:center;gap:9px;margin-left:0;color:#9de6d3;font-size:11px;font-weight:600;min-width:0}.room-tenant-line svg{width:20px;min-width:20px;flex:0 0 20px}.room-tenant-line span{color:#c6d6ce;overflow-wrap:anywhere}.room-card-badges{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:0 0 auto;max-width:48%}.room-card-badges .payment-status{white-space:normal;text-align:right;justify-content:flex-end}
 
 .room-card>.payment-status{align-self:flex-start;width:max-content;max-width:100%;padding:6px 8px;font-size:9px;letter-spacing:.2px;white-space:normal;text-align:left;justify-content:flex-start;margin-top:-2px}
+
+.room-tenant-edit{color:#a9e8d8;border-color:#65d9b44a}.room-actions{gap:7px;flex-wrap:wrap}.room-actions .tiny-action{min-height:29px}
