@@ -19,3 +19,5 @@
 .room-card>.payment-status{align-self:flex-start;width:max-content;max-width:100%;padding:6px 8px;font-size:9px;letter-spacing:.2px;white-space:normal;text-align:left;justify-content:flex-start;margin-top:-2px}
 
 .room-tenant-edit{color:#a9e8d8;border-color:#65d9b44a}.room-actions{gap:7px;flex-wrap:wrap}.room-actions .tiny-action{min-height:29px}
+
+.expiry-reminder{cursor:pointer;border:1px solid #dca36a80;background:#dca36a26;color:#ffd2a0;font:800 9px 'DM Sans';letter-spacing:.3px}.expiry-reminder:hover{background:#dca36a42;transform:translateY(-1px)}
