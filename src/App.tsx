@@ -107,6 +107,7 @@ function FinanceChart({transactions,payments}:{transactions:Row[];payments:Row[]
  const left=54,right=748,top=22,bottom=208,plotH=bottom-top,slot=(right-left)/(count-1||1);
  const coords=buckets.map((b,i)=>({x:left+i*slot,yi:bottom-(b.income/max)*plotH,ye:bottom-(b.expense/max)*plotH}));
  const smoothPath=(key:'yi'|'ye')=>coords.length<2?'':coords.slice(0,-1).map((p,i)=>{const next=coords[i+1],prev=coords[i-1]||p,after=coords[i+2]||next;const dx=(next.x-p.x)/3;const c1y=p[key]+(next[key]-prev[key])/6;const c2y=next[key]-(after[key]-p[key])/6;return `${i===0?'M '+p.x+' '+p[key]+' ':''}C ${p.x+dx} ${c1y}, ${next.x-dx} ${c2y}, ${next.x} ${next[key]}`}).join(' ');
+ const areaPath=(key:'yi'|'ye')=>{const line=smoothPath(key);return line?`${line} L ${coords[coords.length-1].x} ${bottom} L ${coords[0].x} ${bottom} Z`:''};
  const fmt=(n:number)=>new Intl.NumberFormat('id-ID',{notation:n>=1000000?'compact':'standard',maximumFractionDigits:1}).format(n);
  const selected=selectedIndex===null?null:buckets[selectedIndex];
  const totalIn=buckets.reduce((n,b)=>n+b.income,0),totalOut=buckets.reduce((n,b)=>n+b.expense,0);
@@ -116,8 +117,11 @@ function FinanceChart({transactions,payments}:{transactions:Row[];payments:Row[]
   <div className="panel-head chart-heading"><div><h3>Grafik pemasukan & pengeluaran</h3><p>Tren transaksi keuangan berdasarkan tanggal.</p></div><div className="chart-period">{([{id:'7d',label:'7 hari'},{id:'30d',label:'30 hari'},{id:'12m',label:'12 bulan'}] as const).map(p=><button key={p.id} className={period===p.id?'active':''} onClick={()=>{setPeriod(p.id);setSelectedIndex(null)}}>{p.label}</button>)}</div></div>
   <div className="chart-legend"><span><i className="legend-income"/>Pemasukan</span><span><i className="legend-expense"/>Pengeluaran</span></div>
   <div className="finance-chart-scroll" ref={chartScrollRef}><svg className="finance-chart-svg finance-line-svg" viewBox="0 0 780 258" role="group" aria-label="Grafik garis interaktif pemasukan dan pengeluaran">
+   <defs><linearGradient id="reportIncomeFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#35C6A4" stopOpacity=".24"/><stop offset="100%" stopColor="#35C6A4" stopOpacity="0"/></linearGradient><linearGradient id="reportExpenseFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#E7A45F" stopOpacity=".2"/><stop offset="100%" stopColor="#E7A45F" stopOpacity="0"/></linearGradient></defs>
    {[0,1,2,3].map(n=>{const y=bottom-(plotH*n/3);return <g key={n}><line x1="48" y1={y} x2="756" y2={y} stroke="currentColor" opacity=".12" strokeDasharray="4 5"/><text x="40" y={y+4} textAnchor="end" fill="currentColor" opacity=".55" fontSize="10">{fmt(max*n/3)}</text></g>})}
    <line x1={coords[dayH].x} y1={top-5} x2={coords[dayH].x} y2={bottom+5} stroke="#35C6A4" opacity=".5" strokeDasharray="3 5"/>
+   <path d={areaPath('yi')} fill="url(#reportIncomeFill)" stroke="none"/>
+   <path d={areaPath('ye')} fill="url(#reportExpenseFill)" stroke="none"/>
    <path d={smoothPath('yi')} fill="none" stroke="#35C6A4" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
    <path d={smoothPath('ye')} fill="none" stroke="#E7A45F" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
    {coords.map((p,i)=><g key={buckets[i].key} className="line-chart-point" onClick={()=>setSelectedIndex(selectedIndex===i?null:i)} role="button" tabIndex={0} aria-label={buckets[i].label+', pemasukan '+money(buckets[i].income)+', pengeluaran '+money(buckets[i].expense)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')setSelectedIndex(selectedIndex===i?null:i)}}>
