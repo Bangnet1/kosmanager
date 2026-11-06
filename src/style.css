@@ -89,3 +89,37 @@
 @media (max-width:700px){
   .main{width:auto;max-width:none}
 }
+
+
+/* Room map: compact cards with one expanded selection at a time. */
+.room-card{transition:padding .22s ease,min-height .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease}
+.room-card-summary{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.room-card-summary:focus-visible{outline:2px solid #72dfc7;outline-offset:5px;border-radius:8px}
+.room-card-summary .room-card-top{align-items:center;gap:10px}
+.room-card-summary-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px;min-width:0}
+.room-summary-type{font-size:10px;color:#aebbb4;line-height:1.4}
+.room-card-summary .room-facility-list{justify-content:flex-start}
+.room-card-expand-hint{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:7px;color:#8eb9aa;font-size:9px;opacity:.7}
+.room-card-expand-hint span{font-size:13px;line-height:1}
+.room-card-compact{min-height:106px;padding:12px 14px;gap:0;justify-content:center;cursor:pointer;background:#ffffff09}
+.room-card-compact:hover{border-color:#75d9c088;background:#ffffff11;box-shadow:0 8px 24px #0002}
+.room-card-compact .room-title-line .room-name{font-size:15px}
+.room-card-compact .room-title-line svg{width:18px;height:18px}
+.room-card-compact .room-status{font-size:8px}
+.room-card-expanded{padding:15px;min-height:250px;gap:10px;box-shadow:0 12px 30px #0003,inset 0 1px #ffffff18}
+.room-card-expanded .room-card-summary{padding-bottom:10px;border-bottom:1px solid #ffffff17}
+.room-card-expanded .room-card-expand-hint{margin-top:6px}
+.room-card-details{display:flex;flex-direction:column;gap:9px;min-width:0;animation:roomCardReveal .2s ease-out}
+.room-card-details>strong{font:800 15px Manrope;color:#f4f6f3;margin-top:1px}
+.room-card-details>strong small{font:400 10px 'DM Sans';color:#a7b5ad}
+.room-card-details>small{font-size:10px;color:#b3c0b8;line-height:1.45}
+.room-card-details .room-tenant-line{margin-top:0}
+.room-card-details .room-actions{margin-top:3px}
+@keyframes roomCardReveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+ .room-card-compact{min-height:104px;padding:12px}
+ .room-card-expanded{padding:14px}
+ .room-card-summary-meta{align-items:flex-start;flex-direction:column;gap:6px}
+ .room-card-expand-hint{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.room-card,.room-card-details{transition:none;animation:none}}
