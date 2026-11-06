@@ -123,3 +123,36 @@
  .room-card-expand-hint{font-size:8px}
 }
 @media(prefers-reduced-motion:reduce){.room-card,.room-card-details{transition:none;animation:none}}
+
+
+/* Visually separate each property's room collection. */
+.property-room-group{
+  margin:16px 0 20px;
+  padding:18px;
+  border:1px solid #ffffff27;
+  border-radius:16px;
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  box-shadow:0 10px 26px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.06);
+}
+.property-room-group:first-of-type{margin-top:12px}
+.property-room-group h3{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0;
+  font:800 15px Manrope;
+  color:#f2f7f3;
+}
+.property-room-group>.muted{
+  margin:6px 0 15px;
+  color:#aab9b1;
+  font-size:11px;
+  line-height:1.55;
+}
+.property-room-group .room-grid{gap:12px}
+.property-room-group+.property-room-group{border-color:#79d8c044}
+@media(max-width:700px){
+  .property-room-group{margin:14px 0 18px;padding:14px;border-radius:14px}
+  .property-room-group>.muted{margin-bottom:12px}
+  .property-room-group .room-grid{gap:10px}
+}
