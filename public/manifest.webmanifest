@@ -1,0 +1,14 @@
+{
+  "id": "/",
+  "name": "Kos Manager",
+  "short_name": "Kos Manager",
+  "description": "Kelola properti kos, kamar, penyewa, tagihan, pembayaran, dan laporan keuangan.",
+  "lang": "id-ID",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#111613",
+  "theme_color": "#141916",
+  "icons": [{ "src": "/pwa-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
