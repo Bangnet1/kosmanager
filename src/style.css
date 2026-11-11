@@ -199,3 +199,61 @@ body{color:var(--text);background:radial-gradient(ellipse at 80% 5%,rgba(105,82,
 :root[data-theme="light"] .logo{color:#6856e8;background:rgba(104,86,232,.10)}
 @media(max-width:700px){.sidebar{position:sticky;top:0;z-index:8;background:rgba(17,19,31,.94);padding:10px 12px}.brand{padding-bottom:10px}.sidebar nav{padding:2px 0 3px;scrollbar-width:none}.sidebar nav::-webkit-scrollbar{display:none}.nav{flex:0 0 auto;min-height:38px}.top-actions{flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:flex-end}.topbar{align-items:center}}
 @media(max-width:420px){.theme-toggle-label{display:none}.theme-toggle{width:36px;padding:0}.topbar h1{font-size:18px}}
+
+/* Final component polish for contrast, touch targets and responsive reading. */
+:root[data-theme="light"] .property-room-group{background:linear-gradient(145deg,#fff,#f7f8fd);box-shadow:0 10px 26px rgba(39,44,85,.06)}
+:root[data-theme="light"] .room-card{border-color:#e2e5f1}
+:root[data-theme="light"] .room-card-compact:hover{background:#fff;border-color:#aaa0f6;box-shadow:0 8px 24px rgba(80,70,150,.09)}
+:root[data-theme="light"] .room-facility-chip{color:#4e48a3;background:#f0efff;border-color:#d9d4ff}
+:root[data-theme="light"] .room-status.status-free{color:#16775f;background:#e1f7ef}
+:root[data-theme="light"] .room-status.status-busy{color:#986022;background:#fff0db}
+:root[data-theme="light"] .payment-paid{color:#16734f;background:#e1f7ed;border-color:#b9ead4}
+:root[data-theme="light"] .payment-dp{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .payment-unpaid{color:#a13d39;background:#ffebea;border-color:#f5c7c4}
+:root[data-theme="light"] .tenant-status-badge{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .maintenance-reminder{color:#875b16;background:#fff4dc;border-color:#f0d59d}
+:root[data-theme="light"] .checkout-button{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .extend-button{color:#226d69;background:#e3f7f4;border-color:#b5e4dc}
+:root[data-theme="light"] .room-actions .icon-action{background:#f7f7fc;border-color:#dfe2ef}
+:root[data-theme="light"] .room-delete{color:#b54c49}
+:root[data-theme="light"] .room-edit-trigger{color:#5146ae}
+:root[data-theme="light"] .wa-button{color:#fff}
+:root[data-theme="light"] .alert{color:#91433c;background:#fff0ee;border-color:#f3c8c3}
+:root[data-theme="light"] .note-mini{color:#286b5d;background:#e5f7f1}
+:root[data-theme="light"] .empty>span{color:#6856e8}
+:root[data-theme="light"] .secure{color:#4f55a6}
+:root[data-theme="light"] .chart-summary .income-text{color:#187e68}
+:root[data-theme="light"] .chart-summary .expense-text{color:#a96524}
+:root[data-theme="light"] .line-chart-point:focus-visible circle:last-of-type{stroke:#5146ae}
+:root[data-theme="light"] .stat-sparkline .spark-endpoint{stroke:#fff}
+:root[data-theme="light"] .day-h-pulse{stroke:#238f79}
+:root[data-theme="light"] .day-h-pulse.delay{stroke:#bd7b34}
+:root[data-theme="light"] .tiny-action,:root[data-theme="light"] .icon-action,:root[data-theme="light"] .secondary{background:#f8f8fd;border-color:#dfe2ef;color:#4c4a82}
+:root[data-theme="light"] .danger-button{color:#b54c49;border-color:#f0c8c6}
+:root[data-theme="light"] .room-legend{color:#747a94}
+:root[data-theme="light"] .room-dot.free{background:#1c9a76}
+:root[data-theme="light"] .room-dot.busy{background:#c7833c}
+:root[data-theme="light"] .room-tenant-line{color:#6556d8}
+:root[data-theme="light"] .room-tenant-line span{color:#555b76}
+:root[data-theme="light"] .admin-user-main small{color:#777d97}
+:root[data-theme="light"] .admin-user-row{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .close{background:#f0f1f8;color:#343852}
+:root[data-theme="light"] .theme-toggle{background:#fff;color:#343852;border-color:#dedff0}
+:root[data-theme="light"] .theme-toggle-icon{color:#6856e8}
+.nav,.quick,.theme-toggle,.primary,.room-card-summary,.tiny-action,.icon-action{touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:700px){
+ .property-room-group{padding:12px}
+ .room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .room-card-compact{min-height:100px}
+ .room-card-summary-meta{gap:5px}
+ .room-card-summary .room-facility-list{gap:4px}
+ .room-card-summary .room-facility-chip{font-size:8px}
+ .room-actions .room-delete.icon-only,.room-actions .room-edit-trigger{width:44px;height:44px;min-width:44px}
+ .top-actions .primary{min-height:38px;padding:9px 11px}
+}
+@media(max-width:390px){
+ .room-grid{grid-template-columns:minmax(0,1fr)}
+ .room-card-compact{min-height:88px}
+ .secure{display:none}
+}
