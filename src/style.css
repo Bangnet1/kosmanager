@@ -257,3 +257,47 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  .room-card-compact{min-height:88px}
  .secure{display:none}
 }
+
+
+/* Module consistency: clearer data tables, forms and modal layouts across all operational pages. */
+.panel{min-width:0;overflow:hidden}
+.panel-head{gap:14px;align-items:center}
+.panel-head>div{min-width:0}
+.panel-head h3{letter-spacing:-.02em}
+.panel-head p{max-width:720px;line-height:1.6}
+.table-search{width:100%;min-height:44px;margin:12px 0 16px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-soft);color:var(--text);font:inherit;outline:none}
+.table-search::placeholder{color:var(--muted)}
+.table-wrap{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:13px;overscroll-behavior-x:contain}
+.table-wrap table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap}
+.table-wrap th{position:sticky;top:0;z-index:1;background:var(--surface);backdrop-filter:blur(14px);font-size:10px;letter-spacing:.055em;text-transform:uppercase}
+.table-wrap td,.table-wrap th{padding:13px 14px;vertical-align:middle}
+.table-wrap tbody tr{transition:background .16s ease}
+.table-wrap tbody tr:hover{background:var(--surface-soft)}
+.table-wrap tbody tr:last-child td{border-bottom:0}
+.row-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.row-actions button,.tiny-action{min-height:34px;white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.form-grid label,.modal label{display:flex;flex-direction:column;gap:7px;min-width:0;color:var(--muted);font-size:12px;font-weight:650}
+.form-grid input,.form-grid select,.form-grid textarea,.modal input,.modal select,.modal textarea{width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);color:var(--text);font:inherit;font-size:13px}
+.form-grid textarea,.modal textarea{min-height:96px;resize:vertical}
+.form-grid select option,.modal select option{background:#202235;color:#fff}
+.modal-bg{padding:20px;overflow:auto;overscroll-behavior:contain}
+.modal{width:min(100%,680px);max-height:calc(100dvh - 40px);overflow:auto;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 80px #0005}
+.modal .panel-head{position:sticky;top:0;z-index:2;padding-bottom:14px;background:inherit}
+.modal .primary{margin-top:8px;min-height:46px}
+:root[data-theme="light"] .table-wrap th{background:rgba(255,255,255,.96)}
+:root[data-theme="light"] .table-wrap tbody tr:hover{background:#f4f3ff}
+:root[data-theme="light"] .table-search{background:#fff;color:#282c47;border-color:#dfe2ef}
+:root[data-theme="light"] .form-grid input,:root[data-theme="light"] .form-grid select,:root[data-theme="light"] .form-grid textarea,:root[data-theme="light"] .modal input,:root[data-theme="light"] .modal select,:root[data-theme="light"] .modal textarea{background:#f8f9fd;color:#282c47;border-color:#dfe2ef}
+:root[data-theme="light"] .form-grid select option,:root[data-theme="light"] .modal select option{background:#fff;color:#282c47}
+@media(max-width:700px){
+ .panel{padding:15px}
+ .panel-head{align-items:flex-start;flex-wrap:wrap}
+ .panel-head>.primary,.panel-head>button{min-height:40px}
+ .table-wrap{border-radius:11px}
+ .table-wrap td,.table-wrap th{padding:11px 12px}
+ .form-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+ .modal-bg{align-items:flex-end;padding:10px}
+ .modal{width:100%;max-height:calc(100dvh - 20px);border-radius:18px 18px 12px 12px;padding:17px}
+}
+@media(prefers-reduced-motion:reduce){.table-wrap tbody tr{transition:none}}
