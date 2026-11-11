@@ -156,3 +156,148 @@
   .property-room-group>.muted{margin-bottom:12px}
   .property-room-group .room-grid{gap:10px}
 }
+
+:root{color-scheme:dark;--surface:rgba(25,27,42,.82);--surface-soft:rgba(255,255,255,.045);--line:rgba(255,255,255,.12);--text:#f3f4fb;--muted:#a4a7bc;--accent:#8b7cff}
+:root[data-theme="light"]{color-scheme:light;--surface:rgba(255,255,255,.9);--surface-soft:rgba(34,39,70,.045);--line:rgba(49,55,91,.13);--text:#20233a;--muted:#737991;--accent:#6856e8}
+body{color:var(--text);background:radial-gradient(ellipse at 80% 5%,rgba(105,82,222,.16),transparent 35%),radial-gradient(ellipse at 12% 82%,rgba(46,168,211,.10),transparent 38%),#10121b;transition:background .25s,color .25s}
+.sidebar{background:rgba(15,17,29,.9);border-right:1px solid var(--line)}
+.glass,.panel,.stat,.property-room-group{background:var(--surface);border-color:var(--line)}
+.stat strong,.room-card-details>strong,.room-title-line .room-name,.property-room-group h3{color:var(--text)}
+.panel-head p,.stat-head,.stat small,.muted,.property-info small{color:var(--muted)}
+.table-wrap th,.table-wrap td{border-color:var(--line)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);color:var(--text);font-size:11px;font-weight:700}
+.theme-toggle-icon{display:grid;place-items:center;color:var(--accent)}
+:root[data-theme="light"] body{background:radial-gradient(ellipse at 82% 0%,rgba(129,111,255,.12),transparent 35%),radial-gradient(ellipse at 8% 75%,rgba(49,174,208,.08),transparent 38%),#f2f3fa}
+:root[data-theme="light"] .sidebar{background:rgba(255,255,255,.92);border-color:var(--line);box-shadow:8px 0 35px rgba(49,55,91,.06)}
+:root[data-theme="light"] .brand b,:root[data-theme="light"] .topbar h1,:root[data-theme="light"] .panel-head h3,:root[data-theme="light"] .stat strong,:root[data-theme="light"] .user b{color:#252944}
+:root[data-theme="light"] .brand small,:root[data-theme="light"] .nav-label,:root[data-theme="light"] .eyebrow,:root[data-theme="light"] .panel-head p,:root[data-theme="light"] .stat small,:root[data-theme="light"] .muted,:root[data-theme="light"] .user small{color:#7b8199}
+:root[data-theme="light"] .nav,:root[data-theme="light"] .logout{color:#626984}
+:root[data-theme="light"] .nav.active{color:#5d4bd5;background:linear-gradient(100deg,rgba(124,104,255,.14),rgba(65,184,225,.08))}
+:root[data-theme="light"] .hero{background:linear-gradient(115deg,#e8e5ff,#e2f3fa);border-color:rgba(104,86,232,.15)}
+:root[data-theme="light"] .hero-tag{color:#6155b4}
+:root[data-theme="light"] .hero h2{color:#252644}
+:root[data-theme="light"] .hero p{color:#606984}
+:root[data-theme="light"] .hero-art{color:#6556d8;background:rgba(255,255,255,.42)}
+:root[data-theme="light"] .quick,:root[data-theme="light"] .room-card{background:rgba(255,255,255,.65);color:#343852;border-color:var(--line)}
+:root[data-theme="light"] .table-wrap td{color:#343852}
+:root[data-theme="light"] .table-wrap th{color:#777e99}
+:root[data-theme="light"] .modal,:root[data-theme="light"] .auth-card{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .modal label,:root[data-theme="light"] .auth-card label{color:#454a66}
+:root[data-theme="light"] .modal input,:root[data-theme="light"] .modal textarea,:root[data-theme="light"] .auth-card input,:root[data-theme="light"] .form-grid input,:root[data-theme="light"] .form-grid textarea,:root[data-theme="light"] .form-grid select,:root[data-theme="light"] .table-search,:root[data-theme="light"] .template-area{color:#282c47;background:#f8f9fd;border-color:#dfe2ef}
+:root[data-theme="light"] .form-grid select option{background:#fff;color:#282c47}
+:root[data-theme="light"] .room-card-details>strong,:root[data-theme="light"] .room-title-line .room-name,:root[data-theme="light"] .property-room-group h3{color:#272a45}
+:root[data-theme="light"] .room-card-details>small,:root[data-theme="light"] .room-summary-type,:root[data-theme="light"] .property-room-group>.muted{color:#777d97}
+:root[data-theme="light"] .room-edit-menu{background:#fff;box-shadow:0 12px 30px rgba(36,40,78,.15)}
+:root[data-theme="light"] .room-edit-menu button{color:#343852}
+:root[data-theme="light"] .tenant-payment b,:root[data-theme="light"] .tenant-main b{color:#282c47}
+:root[data-theme="light"] .chart-legend,:root[data-theme="light"] .chart-summary{color:#626984}
+:root[data-theme="light"] .chart-summary b{color:#282c47}
+:root[data-theme="light"] .chart-period{background:#f4f5fb;border-color:var(--line)}
+:root[data-theme="light"] .chart-period button{color:#626984}
+:root[data-theme="light"] .chart-period button.active{color:#fff}
+:root[data-theme="light"] .secure{color:#4f55a6;background:rgba(104,86,232,.09);border-color:rgba(104,86,232,.16)}
+:root[data-theme="light"] .logo{color:#6856e8;background:rgba(104,86,232,.10)}
+@media(max-width:700px){.sidebar{position:sticky;top:0;z-index:8;background:rgba(17,19,31,.94);padding:10px 12px}.brand{padding-bottom:10px}.sidebar nav{padding:2px 0 3px;scrollbar-width:none}.sidebar nav::-webkit-scrollbar{display:none}.nav{flex:0 0 auto;min-height:38px}.top-actions{flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:flex-end}.topbar{align-items:center}}
+@media(max-width:420px){.theme-toggle-label{display:none}.theme-toggle{width:36px;padding:0}.topbar h1{font-size:18px}}
+
+/* Final component polish for contrast, touch targets and responsive reading. */
+:root[data-theme="light"] .property-room-group{background:linear-gradient(145deg,#fff,#f7f8fd);box-shadow:0 10px 26px rgba(39,44,85,.06)}
+:root[data-theme="light"] .room-card{border-color:#e2e5f1}
+:root[data-theme="light"] .room-card-compact:hover{background:#fff;border-color:#aaa0f6;box-shadow:0 8px 24px rgba(80,70,150,.09)}
+:root[data-theme="light"] .room-facility-chip{color:#4e48a3;background:#f0efff;border-color:#d9d4ff}
+:root[data-theme="light"] .room-status.status-free{color:#16775f;background:#e1f7ef}
+:root[data-theme="light"] .room-status.status-busy{color:#986022;background:#fff0db}
+:root[data-theme="light"] .payment-paid{color:#16734f;background:#e1f7ed;border-color:#b9ead4}
+:root[data-theme="light"] .payment-dp{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .payment-unpaid{color:#a13d39;background:#ffebea;border-color:#f5c7c4}
+:root[data-theme="light"] .tenant-status-badge{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .maintenance-reminder{color:#875b16;background:#fff4dc;border-color:#f0d59d}
+:root[data-theme="light"] .checkout-button{color:#8a5b15;background:#fff2d9;border-color:#f3dba9}
+:root[data-theme="light"] .extend-button{color:#226d69;background:#e3f7f4;border-color:#b5e4dc}
+:root[data-theme="light"] .room-actions .icon-action{background:#f7f7fc;border-color:#dfe2ef}
+:root[data-theme="light"] .room-delete{color:#b54c49}
+:root[data-theme="light"] .room-edit-trigger{color:#5146ae}
+:root[data-theme="light"] .wa-button{color:#fff}
+:root[data-theme="light"] .alert{color:#91433c;background:#fff0ee;border-color:#f3c8c3}
+:root[data-theme="light"] .note-mini{color:#286b5d;background:#e5f7f1}
+:root[data-theme="light"] .empty>span{color:#6856e8}
+:root[data-theme="light"] .secure{color:#4f55a6}
+:root[data-theme="light"] .chart-summary .income-text{color:#187e68}
+:root[data-theme="light"] .chart-summary .expense-text{color:#a96524}
+:root[data-theme="light"] .line-chart-point:focus-visible circle:last-of-type{stroke:#5146ae}
+:root[data-theme="light"] .stat-sparkline .spark-endpoint{stroke:#fff}
+:root[data-theme="light"] .day-h-pulse{stroke:#238f79}
+:root[data-theme="light"] .day-h-pulse.delay{stroke:#bd7b34}
+:root[data-theme="light"] .tiny-action,:root[data-theme="light"] .icon-action,:root[data-theme="light"] .secondary{background:#f8f8fd;border-color:#dfe2ef;color:#4c4a82}
+:root[data-theme="light"] .danger-button{color:#b54c49;border-color:#f0c8c6}
+:root[data-theme="light"] .room-legend{color:#747a94}
+:root[data-theme="light"] .room-dot.free{background:#1c9a76}
+:root[data-theme="light"] .room-dot.busy{background:#c7833c}
+:root[data-theme="light"] .room-tenant-line{color:#6556d8}
+:root[data-theme="light"] .room-tenant-line span{color:#555b76}
+:root[data-theme="light"] .admin-user-main small{color:#777d97}
+:root[data-theme="light"] .admin-user-row{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .close{background:#f0f1f8;color:#343852}
+:root[data-theme="light"] .theme-toggle{background:#fff;color:#343852;border-color:#dedff0}
+:root[data-theme="light"] .theme-toggle-icon{color:#6856e8}
+.nav,.quick,.theme-toggle,.primary,.room-card-summary,.tiny-action,.icon-action{touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:700px){
+ .property-room-group{padding:12px}
+ .room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .room-card-compact{min-height:100px}
+ .room-card-summary-meta{gap:5px}
+ .room-card-summary .room-facility-list{gap:4px}
+ .room-card-summary .room-facility-chip{font-size:8px}
+ .room-actions .room-delete.icon-only,.room-actions .room-edit-trigger{width:44px;height:44px;min-width:44px}
+ .top-actions .primary{min-height:38px;padding:9px 11px}
+}
+@media(max-width:390px){
+ .room-grid{grid-template-columns:minmax(0,1fr)}
+ .room-card-compact{min-height:88px}
+ .secure{display:none}
+}
+
+
+/* Module consistency: clearer data tables, forms and modal layouts across all operational pages. */
+.panel{min-width:0;overflow:hidden}
+.panel-head{gap:14px;align-items:center}
+.panel-head>div{min-width:0}
+.panel-head h3{letter-spacing:-.02em}
+.panel-head p{max-width:720px;line-height:1.6}
+.table-search{width:100%;min-height:44px;margin:12px 0 16px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-soft);color:var(--text);font:inherit;outline:none}
+.table-search::placeholder{color:var(--muted)}
+.table-wrap{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:13px;overscroll-behavior-x:contain}
+.table-wrap table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap}
+.table-wrap th{position:sticky;top:0;z-index:1;background:var(--surface);backdrop-filter:blur(14px);font-size:10px;letter-spacing:.055em;text-transform:uppercase}
+.table-wrap td,.table-wrap th{padding:13px 14px;vertical-align:middle}
+.table-wrap tbody tr{transition:background .16s ease}
+.table-wrap tbody tr:hover{background:var(--surface-soft)}
+.table-wrap tbody tr:last-child td{border-bottom:0}
+.row-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.row-actions button,.tiny-action{min-height:34px;white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.form-grid label,.modal label{display:flex;flex-direction:column;gap:7px;min-width:0;color:var(--muted);font-size:12px;font-weight:650}
+.form-grid input,.form-grid select,.form-grid textarea,.modal input,.modal select,.modal textarea{width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);color:var(--text);font:inherit;font-size:13px}
+.form-grid textarea,.modal textarea{min-height:96px;resize:vertical}
+.form-grid select option,.modal select option{background:#202235;color:#fff}
+.modal-bg{padding:20px;overflow:auto;overscroll-behavior:contain}
+.modal{width:min(100%,680px);max-height:calc(100dvh - 40px);overflow:auto;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 80px #0005}
+.modal .panel-head{position:sticky;top:0;z-index:2;padding-bottom:14px;background:inherit}
+.modal .primary{margin-top:8px;min-height:46px}
+:root[data-theme="light"] .table-wrap th{background:rgba(255,255,255,.96)}
+:root[data-theme="light"] .table-wrap tbody tr:hover{background:#f4f3ff}
+:root[data-theme="light"] .table-search{background:#fff;color:#282c47;border-color:#dfe2ef}
+:root[data-theme="light"] .form-grid input,:root[data-theme="light"] .form-grid select,:root[data-theme="light"] .form-grid textarea,:root[data-theme="light"] .modal input,:root[data-theme="light"] .modal select,:root[data-theme="light"] .modal textarea{background:#f8f9fd;color:#282c47;border-color:#dfe2ef}
+:root[data-theme="light"] .form-grid select option,:root[data-theme="light"] .modal select option{background:#fff;color:#282c47}
+@media(max-width:700px){
+ .panel{padding:15px}
+ .panel-head{align-items:flex-start;flex-wrap:wrap}
+ .panel-head>.primary,.panel-head>button{min-height:40px}
+ .table-wrap{border-radius:11px}
+ .table-wrap td,.table-wrap th{padding:11px 12px}
+ .form-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+ .modal-bg{align-items:flex-end;padding:10px}
+ .modal{width:100%;max-height:calc(100dvh - 20px);border-radius:18px 18px 12px 12px;padding:17px}
+}
+@media(prefers-reduced-motion:reduce){.table-wrap tbody tr{transition:none}}
