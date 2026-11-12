@@ -621,3 +621,16 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .stats{gap:7px}
   .stat{padding:10px}
 }
+
+
+/* Subscription room quota */
+.room-quota-card{display:grid;gap:8px;margin:0 0 17px;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:var(--surface-soft)}
+.room-quota-top{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px}
+.room-quota-top b{color:var(--text);font-size:12px}
+.room-quota-top strong{color:var(--text);font-size:12px;font-variant-numeric:tabular-nums}
+.room-quota-track{height:8px;overflow:hidden;border-radius:99px;background:rgba(125,132,160,.18)}
+.room-quota-track span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#38b99c,#59a6e7);transition:width .25s ease}
+.room-quota-track span.is-full{background:linear-gradient(90deg,#e5a34e,#e55f6e)}
+.room-quota-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+:root[data-theme="light"] .room-quota-card{background:#fff;border-color:#dfe2ef}
+@media(max-width:600px){.room-quota-top{align-items:flex-start;flex-direction:column;gap:4px}.room-quota-card{padding:12px}}
