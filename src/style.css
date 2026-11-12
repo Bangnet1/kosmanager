@@ -521,3 +521,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .legend-unpaid{background:#ef626b}.legend-paid{background:#2fca91}.legend-partial{background:#e9ad45}.legend-overdue{background:#d93645}
 .status-filter-control{min-width:170px}
 @media(max-width:640px){.status-legend{gap:9px 13px}}
+
+
+/* Logout action beside the privacy/security settings heading */
+.settings-privacy-head{gap:14px;align-items:center}
+.settings-privacy-head>div{min-width:0}
+.settings-privacy-head .privacy-logout{width:auto;flex:0 0 auto;margin:0;padding:9px 13px;color:#ffb4ad;background:#a438381c;border:1px solid #f1777138;border-radius:9px;white-space:nowrap}
+.settings-privacy-head .privacy-logout:hover{background:#b840402a;border-color:#ef8c82}
+@media(max-width:480px){
+ .settings-privacy-head{align-items:flex-start}
+ .settings-privacy-head .privacy-logout{padding:8px 10px;font-size:10px}
+}
