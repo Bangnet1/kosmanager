@@ -512,3 +512,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .status-chip.status-progress{color:#8ebdff;background:rgba(86,143,244,.14);border-color:rgba(86,143,244,.3)}
 .status-chip.status-reported{color:#d0b5ff;background:rgba(147,105,239,.14);border-color:rgba(147,105,239,.3)}
 @media(max-width:640px){.table-toolbar{align-items:stretch}.sort-control{width:100%;min-width:0}.table-toolbar .table-search{width:100%;flex-basis:100%}}
+
+
+/* Explicit status filtering and legend for billing list */
+.status-legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:-4px 0 14px;color:var(--muted);font-size:10px}
+.status-legend span{display:inline-flex;align-items:center;gap:6px}
+.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.legend-unpaid{background:#ef626b}.legend-paid{background:#2fca91}.legend-partial{background:#e9ad45}.legend-overdue{background:#d93645}
+.status-filter-control{min-width:170px}
+@media(max-width:640px){.status-legend{gap:9px 13px}}
