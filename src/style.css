@@ -472,3 +472,28 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   :root:not([data-theme="light"]) .main{padding-left:10px;padding-right:10px}
   :root:not([data-theme="light"]) .stat{padding:11px}
 }
+
+
+/* Dashboard live header, filter controls, and independent room-card sizing. */
+.header-live-info{display:grid;grid-template-columns:auto;gap:2px;min-width:170px;padding:7px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.035)}
+.header-clock{font:800 17px Manrope, sans-serif;letter-spacing:.04em;color:var(--text);font-variant-numeric:tabular-nums}
+.header-date{font-size:10px;color:var(--muted);text-transform:capitalize}
+.header-expiry{font-size:10px;color:#77d9bd;font-weight:800}
+.header-expiry.expiry-warning{color:#f2b76e}
+.header-expiry.admin-expiry{color:#a99cff}
+.chart-filters{display:flex;align-items:end;gap:8px;flex-wrap:wrap}
+.chart-filters label{display:grid;gap:5px;color:var(--muted);font-size:10px;font-weight:700}
+.chart-filters select{min-width:132px;max-width:190px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--text);font:inherit}
+.chart-filters select option{background:#171827;color:#f4f2ff}
+.room-grid{align-items:start}
+.room-card{align-self:start;height:fit-content;min-height:0}
+.room-card-expanded{grid-row:auto}
+@media(max-width:700px){
+ .top-actions{width:100%;flex-direction:row!important;align-items:center!important;justify-content:space-between;flex-wrap:wrap}
+ .header-live-info{min-width:0;flex:1;padding:6px 9px}
+ .header-clock{font-size:15px}
+ .header-date{font-size:9px}
+ .header-expiry{font-size:9px}
+ .chart-filters{width:100%;display:grid;grid-template-columns:1fr 1fr}
+ .chart-filters label,.chart-filters select{width:100%;max-width:none;min-width:0}
+}
