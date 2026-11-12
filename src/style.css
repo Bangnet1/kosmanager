@@ -532,3 +532,26 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  .settings-privacy-head{align-items:flex-start}
  .settings-privacy-head .privacy-logout{padding:8px 10px;font-size:10px}
 }
+
+
+/* Logout button in the dashboard's top-right header */
+.header-logout{
+  display:inline-flex!important;align-items:center;justify-content:center;gap:8px;
+  flex:0 0 auto;min-height:38px;padding:0 13px;border:1px solid rgba(239,112,112,.35);
+  border-radius:11px;background:rgba(190,65,65,.12);color:#e57b7b;
+  font:700 11px inherit;white-space:nowrap;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease
+}
+.header-logout svg{display:block;flex:0 0 16px;width:16px;height:16px;stroke-width:2.2}
+.header-logout:hover{background:rgba(190,65,65,.2);border-color:rgba(239,112,112,.65);transform:translateY(-1px)}
+:root:not([data-theme="light"]) .header-logout{color:#ffaaa8;background:rgba(188,65,75,.16);border-color:rgba(240,112,112,.4)}
+:root:not([data-theme="light"]) .header-logout:hover{background:rgba(188,65,75,.27);border-color:rgba(255,139,139,.7)}
+:root[data-theme="light"] .header-logout{color:#b83e47;background:#fff1f0;border-color:#f0c1c1}
+:root[data-theme="light"] .header-logout:hover{background:#ffe5e3;border-color:#e79b9b}
+@media(max-width:700px){
+  .header-logout{min-height:36px;padding:0 11px;font-size:10px}
+}
+@media(max-width:420px){
+  .header-logout{gap:6px;padding:0 9px}
+  .header-logout svg{width:15px;height:15px;flex-basis:15px}
+}
