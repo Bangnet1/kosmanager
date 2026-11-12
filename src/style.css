@@ -321,29 +321,32 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     #0b0c14;
 }
 :root:not([data-theme="light"]) .sidebar{
-  width:78px;padding:20px 10px;background:rgba(10,11,20,.97);
+  width:250px;padding:24px 17px;background:rgba(10,11,20,.97);
   border-right:1px solid #292a40;backdrop-filter:blur(24px)
 }
-:root:not([data-theme="light"]) .brand{justify-content:center;padding:0 0 28px}
+:root:not([data-theme="light"]) .brand{justify-content:flex-start;padding:0 8px 30px}
 :root:not([data-theme="light"]) .brand>div:last-child,
 :root:not([data-theme="light"]) .nav-label,
 :root:not([data-theme="light"]) .user>div,
-:root:not([data-theme="light"]) .logout{display:none}
-:root:not([data-theme="light"]) .sidebar nav{gap:8px}
+:root:not([data-theme="light"]) .logout{display:block}
+:root:not([data-theme="light"]) .nav-label{padding:0 10px 12px;color:#9294b1}
+:root:not([data-theme="light"]) .sidebar nav{gap:6px}
 :root:not([data-theme="light"]) .nav{
-  justify-content:center;width:48px;height:46px;margin:auto;padding:0;
-  color:#8587a2;border-radius:13px;font-size:0
+  justify-content:flex-start;width:100%;height:46px;margin:0;padding:11px 12px;
+  color:#b8bad0;border-radius:12px;font-size:12px;gap:12px
 }
-:root:not([data-theme="light"]) .nav svg{width:19px;height:19px}
+:root:not([data-theme="light"]) .nav svg{width:19px;height:19px;flex:0 0 19px}
 :root:not([data-theme="light"]) .nav.active{
-  color:#b8adff;background:linear-gradient(135deg,rgba(123,103,255,.25),rgba(71,139,225,.13));
+  color:#c5baff;background:linear-gradient(135deg,rgba(123,103,255,.25),rgba(71,139,225,.13));
   box-shadow:inset 0 0 0 1px rgba(150,133,255,.25),0 5px 18px rgba(91,75,220,.12)
 }
-:root:not([data-theme="light"]) .side-bottom{display:flex;justify-content:center}
-:root:not([data-theme="light"]) .user{border:0;padding:8px 0}
-:root:not([data-theme="light"]) .user>span{background:linear-gradient(135deg,#735dff,#39a7d9);color:white}
+:root:not([data-theme="light"]) .side-bottom{display:block;margin-top:auto}
+:root:not([data-theme="light"]) .user{border-top:1px solid #292a40;padding:17px 4px;gap:10px}
+:root:not([data-theme="light"]) .user>span{background:linear-gradient(135deg,#735dff,#39a7d9);color:white;flex:0 0 34px}
+:root:not([data-theme="light"]) .user small{color:#9294ad;max-width:165px}
+:root:not([data-theme="light"]) .logout{display:flex;width:100%;color:#b8bad0}
 :root:not([data-theme="light"]) .main{
-  width:calc(100% - 78px);max-width:none;margin-left:78px;
+  width:calc(100% - 250px);max-width:none;margin-left:250px;
   padding:28px clamp(20px,3vw,48px)
 }
 :root:not([data-theme="light"]) .topbar{padding-bottom:17px;border-bottom:1px solid #25263a}
