@@ -561,3 +561,5 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .room-actions .room-copy{width:42px;height:40px;min-width:42px;padding:0;display:inline-flex;align-items:center;justify-content:center;color:#9b8cff;border-color:#8875ff55;background:#8875ff12}
 .room-actions .room-copy:hover{background:#8875ff26;border-color:#9b8cff;transform:translateY(-1px)}
 :root:not([data-theme="light"]) .room-actions .room-copy{color:#b8adff;border-color:#8875ff66;background:#8875ff18}
+
+.room-head-actions{display:flex;flex-direction:column;align-items:flex-end;gap:9px}.room-dashboard-head{align-items:flex-start}.room-head-actions .room-legend{justify-content:flex-end}@media(max-width:640px){.room-dashboard-head{gap:12px;flex-wrap:wrap}.room-head-actions{width:100%;align-items:flex-end}.room-head-actions .room-legend{justify-content:flex-end}}
