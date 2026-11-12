@@ -555,3 +555,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .header-logout{gap:6px;padding:0 9px}
   .header-logout svg{width:15px;height:15px;flex-basis:15px}
 }
+
+
+/* Room duplicate action sits directly to the right of the edit control. */
+.room-actions .room-copy{width:42px;height:40px;min-width:42px;padding:0;display:inline-flex;align-items:center;justify-content:center;color:#9b8cff;border-color:#8875ff55;background:#8875ff12}
+.room-actions .room-copy:hover{background:#8875ff26;border-color:#9b8cff;transform:translateY(-1px)}
+:root:not([data-theme="light"]) .room-actions .room-copy{color:#b8adff;border-color:#8875ff66;background:#8875ff18}
