@@ -753,3 +753,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     width:100%!important;
   }
 }
+
+
+/* Tenant identity document upload controls */
+.tenant-doc-upload-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0}
+.tenant-doc-upload{display:flex;flex-direction:column;gap:8px;min-width:0;color:var(--text);font-weight:600}
+.tenant-doc-upload>input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.tenant-doc-upload-box{display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;min-height:58px;padding:10px;border:1px dashed #8b78ef;border-radius:13px;background:rgba(124,92,235,.09);color:var(--accent,#a99aff);cursor:pointer;text-align:center}
+.tenant-doc-upload-box svg{flex:0 0 auto}
+.tenant-doc-upload-box span{min-width:0;max-width:100%;overflow-wrap:anywhere;font-size:12px;font-weight:600}
+.tenant-doc-upload>small{font-size:10px;color:var(--muted);font-weight:400}
+@media(max-width:700px){.tenant-doc-upload-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tenant-doc-upload{font-size:11px}.tenant-doc-upload-box{min-height:54px;padding:8px 5px;gap:5px}.tenant-doc-upload-box span{font-size:10px}}
