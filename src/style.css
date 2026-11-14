@@ -634,3 +634,13 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .room-quota-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
 :root[data-theme="light"] .room-quota-card{background:#fff;border-color:#dfe2ef}
 @media(max-width:600px){.room-quota-top{align-items:flex-start;flex-direction:column;gap:4px}.room-quota-card{padding:12px}}
+
+/* Desktop financial summary sparklines: preserve vertical scale and circular endpoints */
+@media (min-width: 1201px){
+  .stats .stat.has-trend{min-height:280px !important;}
+  .stats .stat.has-trend .stat-sparkline{display:block !important;width:100% !important;height:138px !important;min-height:138px !important;max-height:none !important;flex:0 0 138px !important;aspect-ratio:auto !important;margin-top:auto !important;padding:0 !important;overflow:visible !important;}
+}
+@media (min-width:701px) and (max-width:1200px){
+  .stats .stat.has-trend{min-height:250px !important;}
+  .stats .stat.has-trend .stat-sparkline{height:120px !important;min-height:120px !important;max-height:none !important;flex:0 0 120px !important;aspect-ratio:auto !important;}
+}
