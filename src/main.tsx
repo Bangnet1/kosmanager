@@ -5,7 +5,7 @@ import './style.css'
 
 // One-time cleanup for clients that are still displaying an older cached settings screen.
 const RELEASE_CACHE_KEY = 'kos-manager-release'
-const RELEASE_CACHE_VERSION = '2026-11-12-settings-cleanup'
+const RELEASE_CACHE_VERSION = '2026-11-15-tenant-documents-5mb'
 try {
   if (localStorage.getItem(RELEASE_CACHE_KEY) !== RELEASE_CACHE_VERSION) {
     localStorage.setItem(RELEASE_CACHE_KEY, RELEASE_CACHE_VERSION)
